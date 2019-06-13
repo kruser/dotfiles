@@ -1,0 +1,61 @@
+# ~/.tmuxinator/cubs.yml
+name: cubs
+root: ~/
+
+windows:
+  - database:
+      layout: even-vertical
+      panes:
+        - psql service=rs
+        - psql service=ivylocal
+  - bbops-webapp:
+      root: ~/dev/bbops-webapp
+      layout: d32f,170x56,0,0[170x44,0,0,0,170x11,0,45{85x11,0,45,1,84x11,86,45,2}]
+      panes:
+        - vim .
+        - echo Hi, how are you?
+        - node_modules/.bin/grunt serve
+  - bbops-etl:
+      root: ~/dev/bbops-etl
+      layout: d32f,170x56,0,0[170x44,0,0,0,170x11,0,45{85x11,0,45,1,84x11,86,45,2}]
+      panes:
+        - vim .
+        - echo Hi, how are you?
+        - echo Hi, how are you?
+  - ivy-jobs:
+      root: ~/dev/ivy-jobs
+      layout: d32f,170x56,0,0[170x44,0,0,0,170x11,0,45{85x11,0,45,1,84x11,86,45,2}]
+      panes:
+        - vim .
+        - echo Hi, how are you?
+        - cd src && python server.py
+  - ivy-client:
+      root: ~/dev/ivy-client
+      layout: d32f,170x56,0,0[170x44,0,0,0,170x11,0,45{85x11,0,45,1,84x11,86,45,2}]
+      panes:
+        - vim .
+        - nvm use 10.16.0 && echo Hi, how are you?
+        - nvm use 10.16.0 && npm start
+  - ivy-dugout:
+      root: ~/dev/ivy-dugout
+      layout: d32f,170x56,0,0[170x44,0,0,0,170x11,0,45{85x11,0,45,1,84x11,86,45,2}]
+      panes:
+        - vim .
+        - echo Hi, how are you?
+        - echo Hi, how are you?
+  - uiuc:
+      root: ~/dev/uiuc-stat420-smr
+      layout: even-horizontal
+      panes:
+        - vim .
+        - R
+  - elastic:
+      root: ~
+      layout: main-horizontal
+      panes:
+        - elastic
+  - jupyter:
+      root: ~/dev
+      layout: main-horizontal
+      panes:
+        - jupyter notebook

@@ -16,6 +16,8 @@ Plug 'sbdchd/neoformat'
 "Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'jpalardy/vim-slime'
+Plug 'lifepillar/vim-solarized8'
+
 call plug#end()
 
 " Space for a leader
@@ -23,6 +25,7 @@ let mapleader = " "
 
 " Formatting
 autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --tab-width\ 4\ --print-width\ 120
+autocmd FileType css setlocal formatprg=prettier\ --stdin\ --tab-width\ 4\ --print-width\ 120
 let g:neoformat_try_formatprg = 1
 map <Leader>p :Neoformat<cr>
 
@@ -64,7 +67,9 @@ let g:NERDTreeDirArrowCollapsible="~"
 
 " Theme
 syntax on
-colorscheme atom-dark-256
+set t_Co=256
+set background=dark
+colorscheme solarized8
 
 " Ignore files in CtrlP search
 map <Leader>t :CtrlP<cr>

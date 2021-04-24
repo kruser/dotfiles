@@ -16,7 +16,7 @@ Plug 'sbdchd/neoformat'
 "Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'jpalardy/vim-slime'
-Plug 'lifepillar/vim-solarized8'
+Plug 'altercation/vim-solarized'
 
 call plug#end()
 
@@ -67,9 +67,8 @@ let g:NERDTreeDirArrowCollapsible="~"
 
 " Theme
 syntax on
-set t_Co=256
 set background=dark
-colorscheme solarized8
+colorscheme solarized
 
 " Ignore files in CtrlP search
 map <Leader>t :CtrlP<cr>

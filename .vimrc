@@ -16,7 +16,8 @@ Plug 'sbdchd/neoformat'
 "Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'jpalardy/vim-slime'
-Plug 'altercation/vim-solarized'
+" Plug 'altercation/vim-solarized'
+Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
 
@@ -67,8 +68,9 @@ let g:NERDTreeDirArrowCollapsible="~"
 
 " Theme
 syntax on
+set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme solarized8
 
 " Ignore files in CtrlP search
 map <Leader>t :CtrlP<cr>
@@ -96,3 +98,24 @@ let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
 map <Leader>a <Plug>SlimeParagraphSend
 map <Leader>s :SlimeSend<cr>
+
+" Silence the terminal bells
+augroup windows_term
+    autocmd!
+    autocmd VimEnter * silent !echo -ne "\e[1 q"
+    autocmd VimLeave * silent !echo -ne "\e[5 q"
+augroup END
+
+set visualbell
+set noswapfile
+set cursorline
+set cursorcolumn
+
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
+endif

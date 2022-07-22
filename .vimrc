@@ -5,15 +5,16 @@ Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'mxw/vim-jsx'
 Plug 'scrooloose/nerdtree'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tonchis/vim-to-github'
-Plug 'sbdchd/neoformat'
-"Plug 'vim-airline/vim-airline'
+" Plug 'sbdchd/neoformat'
+Plug 'prettier/vim-prettier'
+Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'jpalardy/vim-slime'
 " Plug 'altercation/vim-solarized'
@@ -21,24 +22,22 @@ Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
 
+
 " Space for a leader
 let mapleader = " "
 
-" Formatting
-autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --tab-width\ 4\ --print-width\ 120
-autocmd FileType css setlocal formatprg=prettier\ --stdin\ --tab-width\ 4\ --print-width\ 120
-let g:neoformat_try_formatprg = 1
-map <Leader>p :Neoformat<cr>
-
 " Use js extension for jsx
 let g:jsx_ext_required = 0
+
+" Prettier
+let g:prettier#config#print_width = '120'
+let g:prettier#config#tab_width = '4'
 
 set number      " show line numbers
 set ruler       " Show cursor position.
 set incsearch   " Highlight matches as you type.
 set hlsearch    " Highlight matches.
 set wrap        " Turn on line wrapping.
-set clipboard=unnamedplus " use the OS clipboard
 
 " Git setup
 map <Leader>b :Gblame<cr>
@@ -84,7 +83,7 @@ map <Leader>f :CtrlSF
 map <Leader>g :CtrlSFToggle<cr>
 let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_ignore_dir = ['bower_components', 'node_modules', 'build', 'coverage']
-let g:ctrlsf_ackprg = '/usr/bin/ack'
+let g:ctrlsf_ackprg = '/opt/homebrew/bin/ack'
 
 " Split pane navigation
 :nnoremap <Leader>l <C-w>l
@@ -99,23 +98,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-o
 map <Leader>a <Plug>SlimeParagraphSend
 map <Leader>s :SlimeSend<cr>
 
-" Silence the terminal bells
-augroup windows_term
-    autocmd!
-    autocmd VimEnter * silent !echo -ne "\e[1 q"
-    autocmd VimLeave * silent !echo -ne "\e[5 q"
-augroup END
-
 set visualbell
 set noswapfile
 set cursorline
 set cursorcolumn
-
-" WSL yank support
-let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
-if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-    augroup END
-endif

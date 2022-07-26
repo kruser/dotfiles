@@ -12,12 +12,11 @@ Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tonchis/vim-to-github'
-" Plug 'sbdchd/neoformat'
 Plug 'prettier/vim-prettier'
+Plug 'psf/black', { 'branch': 'stable'  }
 Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'jpalardy/vim-slime'
-" Plug 'altercation/vim-solarized'
 Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
@@ -32,6 +31,10 @@ let g:jsx_ext_required = 0
 " Prettier
 let g:prettier#config#print_width = '120'
 let g:prettier#config#tab_width = '4'
+let g:prettier#config#use_tabs = 'false'
+
+" Formatting logic
+autocmd FileType python nnoremap <leader>p :Black<CR>
 
 set number      " show line numbers
 set ruler       " Show cursor position.

@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'jparise/vim-graphql'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'mxw/vim-jsx'
 Plug 'scrooloose/nerdtree'
@@ -43,7 +44,7 @@ set hlsearch    " Highlight matches.
 set wrap        " Turn on line wrapping.
 
 " Git setup
-map <Leader>b :Gblame<cr>
+map <Leader>b :Git blame<cr>
 map <Leader>w :ToGithub<cr>
 
 " Tab = 4 spaces
